@@ -87,7 +87,7 @@ const datos = () => ({
   curp: $("#curp").value,
   nacimiento: $("#nac").value,
   genero: $("#genero").value,
-  login: $("#login").value,
+ // login: $("#login").value,
   pwd: $("#pwd").value,
   foto_base64: $("#b64").value || null
 });
@@ -204,7 +204,7 @@ window.editar = async (id) => {
   $("#curp").value = u.curp || "";
   $("#nac").value = u.nacimiento || "";
   $("#genero").value = u.genero || "Indef.";
-  $("#login").value = u.login || "";
+ // $("#login").value = u.login || "";
   $("#pwd").value = ""; // Por seguridad, nunca se muestra la contraseña
   $("#b64").value = u.foto_base64 || "";
 

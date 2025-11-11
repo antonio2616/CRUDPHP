@@ -14,7 +14,7 @@ $op   = $body['op'] ?? 'CONSULTAS_ASC';
 try {
   switch ($op) {
     case 'ALTAS':
-      $stmt = $pdo->prepare("CALL ALTAS(?,?,?,?,?,?,?,?,?)");
+      $stmt = $pdo->prepare("CALL ALTAS(?,?,?,?,?,?,?,?)");
       $stmt->execute([
         $body['nombre'] ?? '',
         $body['apellido_p'] ?? '',
@@ -22,7 +22,6 @@ try {
         $body['curp'] ?? '', 
         $body['nacimiento'] ?? '',
         $body['genero'] ?? 'Indef.',
-        $body['login'] ?? '',
         password_hash($body['pwd'] ?? '', PASSWORD_DEFAULT),
         $body['foto_base64'] ?? null
       ]);
@@ -36,7 +35,7 @@ try {
       break;
 
     case 'CAMBIOS':
-      $stmt = $pdo->prepare("CALL CAMBIOS(?,?,?,?,?,?,?,?,?,?)");
+      $stmt = $pdo->prepare("CALL CAMBIOS(?,?,?,?,?,?,?,?,?)");
       $stmt->execute([
         $body['id'] ?? 0,
         $body['nombre'] ?? '',
@@ -45,7 +44,7 @@ try {
         $body['curp'] ?? '', 
         $body['nacimiento'] ?? '',
         $body['genero'] ?? 'Indef.',
-        $body['login'] ?? '',
+        //$body['login'] ?? '',
         $body['pwd'] ? password_hash($body['pwd'], PASSWORD_DEFAULT) : null,
         $body['foto_base64'] ?? null
       ]);

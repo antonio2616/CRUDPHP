@@ -4,63 +4,140 @@
   <meta charset="utf-8"/>
   <title>CRUD Usuarios con Cámara</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!--Importamos Bootstrap -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
+
 <body class="bg-light p-4">
+
+  <!-- Contenedor principal -->
   <div class="container">
-    <h2 class="mb-3 text-center">Usuarios </h2>
 
-   
+    
+    <h2 class="mb-3 text-center">Usuarios</h2>
 
+
+    <!--FORMULARIO -->
     <div class="card p-3 mb-4">
       <div class="row g-3">
-        <div class="col-md-3"><input id="nombre" class="form-control" placeholder="Nombre"></div>
-        <div class="col-md-3"><input id="ap_p" class="form-control" placeholder="Apellido paterno"></div>
-        <div class="col-md-3"><input id="ap_m" class="form-control" placeholder="Apellido materno"></div>
-        <div class="col-md-3"><input id="curp" class="form-control" maxlength="18" placeholder="CURP"></div>
-        <div class="col-md-3"><input id="nac" type="date" class="form-control"></div>
+
+        <!--Campo: Nombre -->
+        <div class="col-md-3">
+          <input id="nombre" class="form-control" placeholder="Nombre">
+        </div>
+
+        <!-- Campo: Apellido paterno -->
+        <div class="col-md-3">
+          <input id="ap_p" class="form-control" placeholder="Apellido paterno">
+        </div>
+
+        <!-- Campo: Apellido materno -->
+        <div class="col-md-3">
+          <input id="ap_m" class="form-control" placeholder="Apellido materno">
+        </div>
+
+        <!-- Campo: CURP -->
+        <div class="col-md-3">
+          <input id="curp" class="form-control" maxlength="18" placeholder="CURP">
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="col-md-3">
+          <input id="nac" type="date" class="form-control">
+        </div>
+
+        <!-- Selector de género -->
         <div class="col-md-3">
           <select id="genero" class="form-select">
-            <option>Indef.</option><option>Masculino</option><option>Femenino</option>
+            <option>Indef.</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
           </select>
         </div>
-        <div class="col-md-3"><input id="login" class="form-control" placeholder="Usuario"></div>
-        <div class="col-md-3"><input id="pwd" type="password" class="form-control" placeholder="Contraseña"></div>
+
+        <!-- Login / nombre de usuario -->
+        <div class="col-md-3">
+          <input id="login" class="form-control" placeholder="Usuario">
+        </div>
+
+        <!-- Contraseña -->
+        <div class="col-md-3">
+          <input id="pwd" type="password" class="form-control" placeholder="Contraseña">
+        </div>
       </div>
 
+      <!-- SECCIÓN DE CÁMARA Y FOTO -->
       <div class="mt-4">
-        <video id="video" width="300" height="220" class="border rounded" autoplay muted></video>
+        <!-- Video en vivo desde la cámara -->
+        <video id="video" width="300" height="220"
+               class="border rounded" autoplay muted></video>
+
+        <!-- Canvas oculto donde se “toma” la foto -->
         <canvas id="canvas" width="300" height="220" class="d-none"></canvas>
+
+        <!-- Imagen de vista previa de la foto tomada -->
         <img id="preview" class="rounded border" width="120">
+
+        <!-- Botones de control de cámara -->
         <div class="mt-2">
           <button class="btn btn-outline-primary btn-sm" id="btnCam">Activar cámara</button>
           <button class="btn btn-outline-success btn-sm" id="btnShot" disabled>Tomar foto</button>
           <button class="btn btn-outline-warning btn-sm" id="btnRetry" disabled>Reintentar</button>
           <button class="btn btn-outline-danger btn-sm" id="btnDelPhoto" disabled>Eliminar</button>
         </div>
-        <textarea id="b64" rows="4" class="form-control mt-2" placeholder="Base64..."></textarea>
+
+        <!-- Campo donde se almacena la imagen en formato Base64 -->
+        <textarea id="b64" rows="4"
+                  class="form-control mt-2"
+                  placeholder="Base64..."></textarea>
       </div>
     </div>
 
-     <div class="mb-3 d-flex flex-wrap gap-2 justify-content-center">
+
+    <!-- BOTONES DE ACCIONES CRUD-->
+    <div class="mb-3 d-flex flex-wrap gap-2 justify-content-center">
+      <!-- Crear nuevo registro -->
       <button class="btn btn-success" id="btnAltas">ALTAS</button>
+
+      <!-- Actualizar registro existente -->
       <button class="btn btn-warning" id="btnCambios">CAMBIOS</button>
+
+      <!-- Limpiar formulario -->
       <button class="btn btn-danger" id="btnLimpiar">LIMPIAR</button>
+
+      <!-- Consultas ascendente / descendente -->
       <button class="btn btn-primary" id="btnAsc">CONSULTAS ↑</button>
       <button class="btn btn-primary" id="btnDesc">CONSULTAS ↓</button>
     </div>
 
+
+    <!-- TABLA DE REGISTROS GUARDADOS -->
     <table class="table table-striped" id="tabla">
       <thead class="table-dark">
         <tr>
-          <th>Foto</th><th>Nombre</th><th>Ap. Paterno</th><th>Ap. Materno</th>
-          <th>Fecha Nac.</th><th>Género</th><th>CURP</th><th>Acciones</th>
+          <!-- Columnas visibles -->
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Ap. Paterno</th>
+          <th>Ap. Materno</th>
+          <th>Fecha Nac.</th>
+          <th>Género</th>
+          <th>CURP</th>
+          <th>Acciones</th>
         </tr>
       </thead>
+
+      <!-- Filas dinámicas que se insertan desde app.js -->
       <tbody></tbody>
     </table>
-  </div>
 
+  </div> <!-- /container principal -->
+
+
+  <!-- SCRIPT PRINCIPAL -->
   <script src="js/app.js"></script>
+
 </body>
 </html>
